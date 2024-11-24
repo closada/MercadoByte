@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-body-secondary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="text-danger" [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/img/logo.png" alt="mercadobyte" width="70" height="70"></a>
+    <div class="collapse navbar-collapse">
+      <div class="navbar-nav">
+        <!-- aca poner la barra de buscar -->
+        </div>
+    </div>
+    <div class="position-relative end-0">
+      <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link"  routerLink="/" *ngIf="!usuarioaut" (click)="openModal()" routerLinkActive="text-danger">Ingresá</a>
+          </li>
+
+          <li ngbDropdown class="nav-item dropdown" *ngIf="usuarioaut">
+        <button ngbDropdownToggle class="btn " type="button" id="dropdownMenuButton1" ata-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/img/perfil.png" alt="mercadobyte" width="40" height="40">
+        </button>
+  <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end"
+    aria-labelledby="dropdownMenuButton">
+    <li *ngFor="let m of opMenu"><a ngbDropdownItem [routerLink]="m.accion" routerLinkActive="text-danger">{{m.titulo}}</a></li>
+    <li class="border-top mt-2 pt-2" (click)="logout()"><a ngbDropdownItem href="#" role="button">Cerrar Sesión</a></li>
+  </ul>
+      </li>
+
+        </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-2">
+  <router-outlet />
+</div>
+
+<!-- MODAL LOGIN! -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" (change)="error=false" [(ngModel)]="email" class="form-control" id="email" placeholder="Escriba su email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Constraseña</label>
+              <input type="password" (change)="error=false" [(ngModel)]="clave" class="form-control" id="password" placeholder="Escriba su contraseña" name="clave" required>
+            </div>
+            <div *ngIf="error">
+          <small class="text-danger">Las credenciales ingresadas son incorrectas</small>
+      </div>
+            <button type="submit" (click)="login()" class="btn btn-primary w-100">Iniciar Sesion</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

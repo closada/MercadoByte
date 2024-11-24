@@ -1,0 +1,20 @@
+<div *ngIf="!tienepublic" class="mt-5">
+	<h6>Aún no ha realizado ninguna publicación.</h6>
+</div>
+<div *ngIf="tienepublic" >
+<div class="card mb-3" *ngFor="let p of publicaciones">
+  <div class="row g-0">
+    <div class="col-md-3">
+      <img src="https://via.placeholder.com/150" class="img-fluid rounded-start" [alt]="p.id" >
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <h5 class="card-title">{{ p.titulo }}</h5>
+        <p class="card-text"><small class="text-muted">Categoria: {{ p.categoria }}</small></p>
+        <p class="card-text">Stock: {{ p.stock }} | Precio: {{ p.total | currency }}</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>

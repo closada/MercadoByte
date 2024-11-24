@@ -1,0 +1,65 @@
+<div class="container">
+<form [formGroup]="miFormulario">
+		<div class="mb-3 fs-3">
+          <label for="nombre" class="form-label"></label>
+          <input type="text" class="form-control-plaintext" name="nombre" formControlName="nombre" required>
+        </div>
+        <div class="form-group row mb-3">
+	    <label for="dni" class="col-sm-2 col-form-label">Documento</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control-plaintext" id="dni" formControlName="dni" required>
+	    </div>
+	  </div>
+
+	  <div class="form-group row mb-3">
+	    <label for="email" class="col-sm-2 col-form-label">Email</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control-plaintext" id="email" formControlName="email" required>
+	    </div>
+	  </div>
+
+
+	  <div class="form-group row mb-3">
+	    <label for="domicilio" class="col-sm-2 col-form-label">Domicilio</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="domicilio" formControlName="domicilio" required>
+	    </div>
+	  </div>
+
+	  	  <div class="form-group row mb-3">
+	    <label for="id_localidad" class="col-sm-2 col-form-label">Localidad</label>
+	    <div class="col-sm-10">
+	      <select class="form-control" [size]="1" formControlName="id_localidad">
+            <option *ngFor="let l of localidades" [value]="l.id_localidad">{{ l.nombre_localidad }}</option>
+          </select>
+	    </div>
+	  </div>
+
+	  	  <div class="form-group row mb-3">
+	    <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+	    <div class="col-sm-10">
+	      <input type="password" class="form-control" id="password" formControlName="password" required>
+	    </div>
+	  </div>
+	  	<div class="">
+        <button type="button" class="btn btn-outline-primary me-1" [disabled]="miFormulario.invalid" (click)="guardar()">Guardar Cambios</button>
+    	</div>
+      </form>
+</div>
+
+<!-- MODAL CAMBIOS OK -->
+<div class="modal fade" id="cambiosModal" tabindex="-1" aria-labelledby="cambiosModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Actualización correcta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+        </div>
+        <div class="modal-body">
+          Se han guardado los cambios correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
